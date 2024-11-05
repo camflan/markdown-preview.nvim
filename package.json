@@ -4,14 +4,15 @@
   "description": "markdown preview plugin for (neo)vim",
   "bin": "./app/server.js",
   "repository": "https://github.com/camflan/markdown-preview.nvim.git",
-  "author": "年糕小豆汤 <ooiss@qq.com>",
+  "author": "Camron Flanders <me@camronflanders.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
     "watch": "tsc -w -p ./",
     "build-app": "cd app && rm -rf ./.next && next build && next export",
     "build-lib": "tsc -p ./",
-    "build": "tsc -p ./ && cd app && rm -rf ./.next && next build && next export && yarn && pkg --targets node16-linux-x64,node16-macos-x64,node16-win-x64 --out-path ./bin . && rm -rf ./node_modules ./.next"
+    "build": "tsc -p ./ && cd app && rm -rf ./.next && next build && next export && npm i && pkg --targets node16-linux-x64,node16-macos-arm64,node16-macos-x64,node16-win-x64 --out-path ./bin . && rm -rf ./node_modules ./.next",
+    "compress": "cd app/bin && tar cfz markdown-preview-linux.tar.gz markdown-preview-linux-x64 && tar cfz markdown-preview-macos-arm64.tar.gz markdown-preview-macos-arm64 && tar cfz markdown-preview-macos-x64.tar.gz markdown-preview-macos-x64 && zip markdown-preview-win.zip markdown-preview-win-x64.exe"
   },
   "dependencies": {
     "@chemzqm/neovim": "^5.7.9",
